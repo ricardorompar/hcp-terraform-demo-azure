@@ -1,0 +1,7 @@
+token = "<your-HCP-TF-token>"
+email = "<your-HCP-TF-email>"
+github-token = "<your-github-token>"
+arm_client_id = "<your-app-id>"
+arm_client_secret = "<your-app-password>"
+arm_subscription_id  = "<your-arm-subscription>"
+arm_tenant_id = "<your-tenant-id>"

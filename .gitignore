@@ -1,0 +1,21 @@
+#  Local .terraform directories
+**/.terraform/*
+
+# Hidden terraform files:
+**.terraform*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+# terraformrc file
+.terraformrc
+terraform.rc
+
+*.DS_store
+
+# Modules (already have a separate Git history) - to avoid using submodules
+modules/*

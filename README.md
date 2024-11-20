@@ -6,8 +6,8 @@ This repo includes some resources to showcase some of the features of HCP Terraf
 - Terraform (v1.9.8)
 - An HCP Terraform account. The free tier account is enough for this demo ***except for no-code modules***. If you want to try no-code make sure to use a `plus` tier organization.
 - Access to an Azure account for deploying resources. The cost of deploying the resources for the Hashicat app should amount to less than $20/mo, which means just a few cents for a quick demo.
-- Access to the [GitHub demo org](https://github.com/tf-demos) with the predefined modules. Reach out to me for access.
-- A Github account and a personal access token with the following permissions allowed:
+- A GitHub account and granted access to the [GitHub demo org](https://github.com/tf-demos) with the predefined modules. Reach out to me for access.
+- A GitHub personal access token with the following permissions allowed:
     - repo:*
     - workflow
     - write:packages
@@ -35,7 +35,7 @@ Create a Service Principal with `Contributor` role:
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIPTION_ID>"
 ```
 
-After running this command you'll get a response like the one below:
+After running this command you'll get a response with a payload like the one below:
 
 ```json
 {

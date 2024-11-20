@@ -83,6 +83,15 @@ This demo creates a variable set with the credentials needed to log in to your A
 
 For creating the modules in the private registry you will need these modules in GitHub like [this](https://github.com/tf-demos). Reach out to me to request access to the org.
 
+> Note: the Terraform files in the `config-hcp-terraform` will create an organization in HCP Terraform created `unique-demo-org` by default if you wish to change that name you can do so in the [`variables.tf`](./config-hcp-terraform/variables.tf) file. 
+>Bear in mind, however, that this name is also used for the `terraform` block and the module sources in the `modules-demo` configurations. You would have to change every line that contains 'unique-demo-org'.
+
+### Configure HCP Terraform and deploy resources.
+
+With this demo you will deploy the Hashicat app with the resources shown in this diagram:
+
+![Infrastructure_diagram](./src/diagram.png)
+
 Go back to the root of the `hcp-terraform-demo-azure` directory and run these commands:
 
 ```bash

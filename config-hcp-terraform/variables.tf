@@ -12,15 +12,9 @@ variable "token" {
 
 # For creating org and workspace:
 variable "org-name" {
-  description = "Name for the (preexisting) organization to create modules in."
+  description = "Name for the organization to create modules in."
   type = string
   default = "unique-demo-org"
-}
-
-variable "proj-name" {
-  description = "Name for the (preexisting) organization to create modules in."
-  type = string
-  default = "Demo Project"
 }
 
 variable "email" {

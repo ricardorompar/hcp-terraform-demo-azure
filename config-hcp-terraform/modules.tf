@@ -101,17 +101,3 @@ resource "tfe_registry_module" "hashicat-app-gateway" {
     oauth_token_id     = tfe_oauth_client.oauth-client.oauth_token_id
   }
 }
-
-resource "tfe_registry_module" "hashicat-complete" {
-  organization = var.org-name
-  vcs_repo {
-    display_identifier = "tf-demos/terraform-azurerm-hashicat-complete"
-    identifier         = "tf-demos/terraform-azurerm-hashicat-complete"
-    oauth_token_id     = tfe_oauth_client.oauth-client.oauth_token_id
-  }
-}
-
-resource "tfe_no_code_module" "hashicat-complete" {
-  organization = var.org-name
-  registry_module = tfe_registry_module.hashicat-complete.id
-}

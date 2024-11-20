@@ -59,14 +59,14 @@ Go over to `config-hcp-terraform` and create a `terraform.tfvars` with the follo
 - `arm_subscription_id`: your Azure subscription ID.
 - `arm_tenant_id`: your Azure tenant ID.
 
-> Check the [example](./config-hcp-terraform/terraform.tfvars.example)file.
+> Check the [example](./config-hcp-terraform/terraform.tfvars.example) file.
 
 ### Variables for modules deployment
 Go over to `modules-demo` and create a `terraform.tfvars` with this variable:
 
 - `prefix`: a memorable prefix for most of the resources' names.
 
-> Check the [example](./modules-demo/terraform.tfvars.example)file.
+> Check the [example](./modules-demo/terraform.tfvars.example) file.
 
 ### (Optional) Variables for no-code module
 Go over to `no-code-module-demo` and create a `terraform.tfvars` with these variables:
@@ -75,7 +75,7 @@ Go over to `no-code-module-demo` and create a `terraform.tfvars` with these vari
 - `email`: email address of the HCP Terraform account owner.
 - `github-token`: a personal access token from GitHub with the permissions specified in the `Prerequisites` section.
 
-> Check the [example](./no-code-module-demo/terraform.tfvars.example)file.
+> Check the [example](./no-code-module-demo/terraform.tfvars.example) file.
 
 ## 4. Run the demo
 
@@ -86,13 +86,13 @@ For creating the modules in the private registry you will need these modules in 
 Go back to the root of the `hcp-terraform-demo-azure` directory and run these commands:
 
 ```bash
-# Configure HCP Terraform: create a demo organization, workspace and modules
+# Configure HCP Terraform: create a demo organization in HCP Terraform, workspace and modules
 cd config-hcp-terraform
 terraform init
 terraform apply -auto-approve
 cd .. #return
 
-# Deploy the modules and infrastructure based on the configuration created before
+# Deploy the modules and infrastructure based on the configuration created right before
 cd modules-demo
 terraform init
 terraform apply -auto-approve
@@ -102,5 +102,11 @@ cd .. #return
 ### Optional: create a no-code module
 This part of the demo is created separately because it requires a `plus` tier organization in HCP Terraform.
 
+```bash
+cd no-code-module-demo
+terraform init
+terraform apply -auto-approve
+cd .. #return
+```
 
 ## 5. Cleanup

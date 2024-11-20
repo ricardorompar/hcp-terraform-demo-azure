@@ -2,7 +2,7 @@ terraform {
   cloud {
     organization = "unique-demo-org"
     workspaces {
-      name = "hashicat-workspace"
+      name = "workspace-hashicat"
     }
   }
 }

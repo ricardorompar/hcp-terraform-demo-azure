@@ -14,6 +14,7 @@ This repo includes some resources to showcase some of the features of HCP Terraf
     - delete: packages
     - admin:repo_hook
     - admin:org_hook
+    - admin: org
     - notifications
     This will be used for creating the modules within your organization from predefined modules.
 
@@ -71,6 +72,7 @@ Go over to `modules-demo` and create a `terraform.tfvars` with this variable:
 ### (Optional) Variables for no-code module
 Go over to `no-code-module-demo` and create a `terraform.tfvars` with these variables:
 
+- `org-name`: the name of a `plus` tier account of HCP Terraform.
 - `token`: a valid HCP Terraform token. Create one [here](https://app.terraform.io/app/settings/tokens)
 - `email`: email address of the HCP Terraform account owner.
 - `github-token`: a personal access token from GitHub with the permissions specified in the `Prerequisites` section.
@@ -81,7 +83,7 @@ Go over to `no-code-module-demo` and create a `terraform.tfvars` with these vari
 
 This demo creates a variable set with the credentials needed to log in to your Azure account. This variable set will later be used to deploy all the required resources for the Hashicat app.
 
-For creating the modules in the private registry you will need these modules in GitHub like [this](https://github.com/tf-demos). Reach out to me to request access to the org.
+For creating the modules in the private registry you will need the predefined modules in GitHub like [this](https://github.com/tf-demos). Reach out to me to request access to the org so that you can access.
 
 > ⚠️ Note: the Terraform files in the `config-hcp-terraform` will create an organization in HCP Terraform created `unique-demo-org` by default.
 > If you wish to change that name you can do so in the [`variables.tf`](./config-hcp-terraform/variables.tf) file.
@@ -94,8 +96,9 @@ With this demo you will deploy the Hashicat app with the resources shown in this
 
 ![Infrastructure_diagram](./src/diagram.png)
 
-Go back to the root of the `hcp-terraform-demo-azure` directory and run these commands:
+Go back to the root of the `hcp-terraform-demo-azure` directory and run the following commands. Note the different colors of the terminal outputs when 
 
+> NOTE: This should take around 3-4 minutes to deploy.
 ```bash
 # Configure HCP Terraform: create a demo organization in HCP Terraform, workspace and modules
 cd config-hcp-terraform

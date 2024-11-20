@@ -1,16 +1,16 @@
 #######################
-#     Organization    #
+#    Organization     #
 #######################
-resource "tfe_organization" "your-organization" {
+resource "tfe_project" "demo-project" {
+  organization = var.org-name
   name  = var.org-name
-  email = var.email
 }
 
 #######################
 #     Github auth     #
 #######################
 resource "tfe_oauth_client" "oauth-client" {
-  organization     = tfe_organization.your-organization.name
+  organization     = var.org-name
   api_url          = "https://api.github.com"
   http_url         = "https://github.com"
   oauth_token      = var.github-token
@@ -21,9 +21,10 @@ resource "tfe_oauth_client" "oauth-client" {
 #      Workspace      #
 #######################
 resource "tfe_workspace" "hashicat-workspace" {
-  name = var.workspace-name
-  organization = tfe_organization.your-organization.name
-  tag_names = ["demo", "app", "hashicat"]
+  name          = var.workspace-name
+  organization  = var.org-name
+  tag_names     = ["demo", "app", "hashicat"]
+  project_id    = tfe_project.demo-project.id
 }
 
 #######################
@@ -32,7 +33,7 @@ resource "tfe_workspace" "hashicat-workspace" {
 resource "tfe_variable_set" "azure_creds" {
   name          = "Azure credentials"
   description   = "Credentials needed to log in to Azure."
-  organization  = tfe_organization.your-organization.name
+  organization  = var.org-name
   global        = true
 }
 
@@ -75,6 +76,7 @@ resource "tfe_variable" "arm_tenant_id" {
 #       Modules       #
 #######################
 resource "tfe_registry_module" "hashicat-networking" {
+  organization = var.org-name
   vcs_repo {
     display_identifier = "tf-demos/terraform-azurerm-hashicat-networking"
     identifier         = "tf-demos/terraform-azurerm-hashicat-networking"
@@ -83,6 +85,7 @@ resource "tfe_registry_module" "hashicat-networking" {
 }
 
 resource "tfe_registry_module" "hashicat-compute" {
+  organization = var.org-name
   vcs_repo {
     display_identifier = "tf-demos/terraform-azurerm-hashicat-compute"
     identifier         = "tf-demos/terraform-azurerm-hashicat-compute"
@@ -91,9 +94,24 @@ resource "tfe_registry_module" "hashicat-compute" {
 }
 
 resource "tfe_registry_module" "hashicat-app-gateway" {
+  organization = var.org-name
   vcs_repo {
     display_identifier = "tf-demos/terraform-azurerm-hashicat-app-gateway"
     identifier         = "tf-demos/terraform-azurerm-hashicat-app-gateway"
     oauth_token_id     = tfe_oauth_client.oauth-client.oauth_token_id
   }
+}
+
+resource "tfe_registry_module" "hashicat-complete" {
+  organization = var.org-name
+  vcs_repo {
+    display_identifier = "tf-demos/terraform-azurerm-hashicat-complete"
+    identifier         = "tf-demos/terraform-azurerm-hashicat-complete"
+    oauth_token_id     = tfe_oauth_client.oauth-client.oauth_token_id
+  }
+}
+
+resource "tfe_no_code_module" "hashicat-complete" {
+  organization = var.org-name
+  registry_module = tfe_registry_module.hashicat-complete.id
 }

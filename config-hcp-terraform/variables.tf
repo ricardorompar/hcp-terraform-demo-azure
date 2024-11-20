@@ -10,22 +10,28 @@ variable "token" {
   type = string
 }
 
-# For creating ORG and workspace:
+# For creating org and workspace:
+variable "org-name" {
+  description = "Name for the (preexisting) organization to create modules in."
+  type = string
+  default = "unique-demo-org"
+}
+
+variable "proj-name" {
+  description = "Name for the (preexisting) organization to create modules in."
+  type = string
+  default = "Demo Project"
+}
+
 variable "email" {
   description = "Email of the account owner."
   type = string
 }
 
-variable "org-name" {
-  description = "Name for the organization to create modules in. Make sure to use a unique name (globally)."
-  type = string
-  default = "unique-demo-org"
-}
-
 variable "workspace-name" {
   description = "Name for the workspace to use the modules in."
   type = string
-  default = "hashicat-workspace"
+  default = "workspace-hashicat"
 }
 
 # For authentication to Github:

@@ -73,7 +73,7 @@ Go over to `modules-demo` and create a `terraform.tfvars` with this variable:
 Go over to `no-code-module-demo` and create a `terraform.tfvars` with these variables:
 
 - `org-name`: the name of a `plus` tier account of HCP Terraform.
-- `token`: a valid HCP Terraform token. Create one [here](https://app.terraform.io/app/settings/tokens)
+- `token`: a valid HCP Terraform token. Create one [here](https://app.terraform.io/app/settings/tokens).
 - `email`: email address of the HCP Terraform account owner.
 - `github-token`: a personal access token from GitHub with the permissions specified in the `Prerequisites` section.
 
@@ -85,7 +85,9 @@ This demo creates a variable set with the credentials needed to log in to your A
 
 For creating the modules in the private registry you will need the predefined modules in GitHub like [this](https://github.com/tf-demos). Reach out to me to request access to the org so that you can access.
 
-> ⚠️ Note: the Terraform files in the `config-hcp-terraform` will create an organization in HCP Terraform created `unique-demo-org` by default.
+You may also create your own modules that you can clone from [these repositories](https://github.com/orgs/tf-demos/repositories) and change the `identifier` value in the modules definition in the [`modules.tf`](./config-hcp-terraform/modules.tf) file.
+
+> ⚠️ Note: the Terraform files in the `config-hcp-terraform` will create an organization in HCP Terraform called `unique-demo-org` by default.
 > If you wish to change that name you can do so in the [`variables.tf`](./config-hcp-terraform/variables.tf) file.
 >
 >Bear in mind, however, that this name is also used for the `terraform` block and ALL the module sources in the `modules-demo` configurations. You would need to change every line that contains 'unique-demo-org'.

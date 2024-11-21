@@ -28,7 +28,7 @@ In order to create these resources you'll need a Service Principal in your Azure
 
 First, log in to your Azure account in the CLI:
 ```bash
-az login
+az login --tenant <TENANT_ID>
 ```
 
 Create a Service Principal with `Contributor` role:

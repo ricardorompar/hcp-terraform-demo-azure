@@ -85,7 +85,7 @@ This demo creates a variable set with the credentials needed to log in to your A
 
 For creating the modules in the private registry you will need the predefined modules in GitHub like [this](https://github.com/tf-demos). Reach out to me to request access to the org so that you can access.
 
-You may also create your own modules that you can clone from [these repositories](https://github.com/orgs/tf-demos/repositories) and change the `identifier` value in the modules definition in the [`modules.tf`](./config-hcp-terraform/modules.tf) file.
+You may also create your own modules that you can clone from [these repositories](https://github.com/orgs/tf-demos/repositories) and change the `identifier` value in the modules definition in the [`modules.tf`](./config-hcp-terraform/modules.tf) file. Check [this guide](https://developer.hashicorp.com/terraform/cloud-docs/registry/publish-modules) to learn more about creating and publishing modules in your private registry.
 
 > ⚠️ Note: the Terraform files in the `config-hcp-terraform` will create an organization in HCP Terraform called `unique-demo-org` by default.
 > If you wish to change that name you can do so in the [`variables.tf`](./config-hcp-terraform/variables.tf) file.
@@ -126,3 +126,20 @@ cd .. #return
 ```
 
 ## 5. Cleanup
+```bash
+# Destroy infra from modules-demo
+cd config-hcp-terraform
+terraform destroy -auto-approve
+cd .. #return
+
+cd modules-demo
+terraform destroy -auto-approve
+cd .. #return
+```
+
+If you also created the no-code module:
+```bash
+cd no-code-module-demo
+terraform destroy -auto-approve
+cd .. #return
+```

@@ -1,5 +1,5 @@
+org-name = "your-org-name"
 token = "<your-HCP-TF-token>"
-email = "your-email"
 github-token = "<your-github-token>"
 arm_client_id = "<your-app-id>"
 arm_client_secret = "<your-app-password>"

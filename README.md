@@ -8,14 +8,7 @@ This repo includes some resources to showcase some of the features of HCP Terraf
 - Access to an Azure account for deploying resources. The cost of deploying the resources for the Hashicat app should amount to less than $20/mo, which means just a few cents for a quick demo.
 - A GitHub account and granted access to the [GitHub demo org](https://github.com/tf-demos) with the predefined modules. Reach out to me for access.
 - A GitHub personal access token with the following permissions allowed:
-    - repo:*
-    - workflow
-    - write:packages
-    - delete: packages
-    - admin:repo_hook
-    - admin:org_hook
-    - admin: org
-    - notifications
+    - org:read
     This will be used for creating the modules within your organization from predefined modules.
 
 ## 1. Clone this repo and change to the new dir
@@ -69,31 +62,25 @@ Go over to `modules-demo` and create a `terraform.tfvars` with this variable:
 
 > Check the [example](./modules-demo/terraform.tfvars.example) file.
 
-### (Optional) Variables for no-code module
-Go over to `no-code-module-demo` and create a `terraform.tfvars` with these variables:
+### Variables for Vault cluster
+Go over to `vault` and create a `terraform.tfvars` with these variable:
 
-- `org-name`: the name of a `plus` tier account of HCP Terraform.
-- `token`: a valid HCP Terraform token. Create one [here](https://app.terraform.io/app/settings/tokens).
-- `email`: email address of the HCP Terraform account owner.
-- `github-token`: a personal access token from GitHub with the permissions specified in the `Prerequisites` section.
+- `prefix`: a memorable prefix for most of the resources' names.
+- `hcp_project_id`: the ID of the project in HCP to deploy the Vault cluster.
 
-> Check the [example](./no-code-module-demo/terraform.tfvars.example) file.
+> Check the [example](./vault/terraform.tfvars.example) file.
 
 ## 4. Run the demo
 
 This demo creates a variable set with the credentials needed to log in to your Azure account. This variable set will later be used to deploy all the required resources for the Hashicat app.
 
-For creating the modules in the private registry you will need the predefined modules in GitHub like [this](https://github.com/tf-demos). Reach out to me to request access to the org so that you can access.
+For creating the modules in the private registry you will need the predefined modules in GitHub like [this](https://github.com/tf-demos).
 
 You may also create your own modules that you can clone from [these repositories](https://github.com/orgs/tf-demos/repositories) and change the `identifier` value in the modules definition in the [`modules.tf`](./config-hcp-terraform/modules.tf) file. Check [this guide](https://developer.hashicorp.com/terraform/cloud-docs/registry/publish-modules) to learn more about creating and publishing modules in your private registry.
 
-> ⚠️ Note: the Terraform files in the `config-hcp-terraform` will create an organization in HCP Terraform called `unique-demo-org` by default.
-> If you wish to change that name you can do so in the [`variables.tf`](./config-hcp-terraform/variables.tf) file.
->
->Bear in mind, however, that this name is also used for the `terraform` block and ALL the module sources in the `modules-demo` configurations. You would need to change every line that contains 'unique-demo-org'.
-
 ### `New`: Create a Vault cluster and consume secrets from Vault
 > ⚠️ Note: this requires an account in HCP. 
+>
 > ⚠️ The deployment of this (development) cluster in Azure takes around 8-10 minutes.
 
 This will create a `dev` cluster by default. The outputs are a token with restricted policies to only read the example secret that's configured and the address of the cluster.
@@ -113,28 +100,24 @@ With this demo you will deploy the Hashicat app with the resources shown in this
 
 ![Infrastructure_diagram](./src/diagram.png)
 
-Go back to the root of the `hcp-terraform-demo-azure` directory and run the following commands. Note the different colors of the terminal outputs when 
-
-> NOTE: This should take around 3-4 minutes to deploy.
+Go back to the root of the `hcp-terraform-demo-azure` directory and run the following commands.
 ```bash
 # Configure HCP Terraform: create a demo organization in HCP Terraform, workspace and modules
 cd config-hcp-terraform
 terraform init
 terraform apply -auto-approve
 cd .. #return
-
-# Deploy the modules and infrastructure based on the configuration created right before
-cd modules-demo
-terraform init
-terraform apply -auto-approve
-cd .. #return
 ```
 
-### Optional: create a no-code module
-This part of the demo is created separately because it requires a `plus` tier organization in HCP Terraform.
+With this configuration in place you can use the Designer configuration in HCP Terraform or deploy a no-code module.
+
+### Optional: deploy resources with the CLI-driven workflow
+
+> NOTE: This should take around 3-4 minutes to deploy.
 
 ```bash
-cd no-code-module-demo
+# Deploy the modules and infrastructure based on the configuration created right before
+cd modules-demo
 terraform init
 terraform apply -auto-approve
 cd .. #return

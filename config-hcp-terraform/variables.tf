@@ -15,11 +15,6 @@ variable "org-name" {
   type = string
 }
 
-variable "email" {
-  description = "Email of the account owner."
-  type = string
-}
-
 
 # For authentication to Github:
 variable "github-token" {

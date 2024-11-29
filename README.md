@@ -81,7 +81,7 @@ You may also create your own modules that you can clone from [these repositories
 ### `New`: Create a Vault cluster and consume secrets from Vault
 > ⚠️ Note: this requires an account in HCP. 
 >
-> ⚠️ The deployment of this (development) cluster in Azure takes around 8-10 minutes.
+> ⚠️ The deployment of this (development) cluster in Azure takes around 10-15 minutes.
 
 This will create a `dev` cluster by default. The outputs are a token with restricted policies to only read the example secret that's configured and the address of the cluster.
 

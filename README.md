@@ -92,6 +92,21 @@ You may also create your own modules that you can clone from [these repositories
 >
 >Bear in mind, however, that this name is also used for the `terraform` block and ALL the module sources in the `modules-demo` configurations. You would need to change every line that contains 'unique-demo-org'.
 
+### `New`: Create a Vault cluster and consume secrets from Vault
+> ⚠️ Note: this requires an account in HCP. 
+> ⚠️ The deployment of this (development) cluster in Azure takes around 8-10 minutes.
+
+This will create a `dev` cluster by default. The outputs are a token with restricted policies to only read the example secret that's configured and the address of the cluster.
+
+This Vault instance will be used to showcase the consumption of secrets from the new version of the Hashicat app.
+
+```bash
+cd vault
+terraform init
+terraform apply -auto-approve
+cd .. #return
+```
+
 ### Configure HCP Terraform and deploy resources.
 
 With this demo you will deploy the Hashicat app with the resources shown in this diagram:
@@ -140,6 +155,13 @@ cd .. #return
 If you also created the no-code module:
 ```bash
 cd no-code-module-demo
+terraform destroy -auto-approve
+cd .. #return
+```
+
+Destroy Vault cluster and configs:
+```bash
+cd vault
 terraform destroy -auto-approve
 cd .. #return
 ```

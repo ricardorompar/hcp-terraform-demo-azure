@@ -1,0 +1,9 @@
+# Rename or copy this file to terraform.tfvars
+# Prefix must be all lowercase letters, digits, and hyphens.
+# Make sure it is at least 5 characters long.
+
+prefix = "yourname"
+
+# use the ID of your HCP project
+
+hcp_project_id = "9a876b-..."

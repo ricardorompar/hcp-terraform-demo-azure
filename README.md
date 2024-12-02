@@ -124,20 +124,19 @@ cd .. #return
 ```
 
 ## 5. Cleanup
-```bash
-# Destroy infra from modules-demo
-cd config-hcp-terraform
-terraform destroy -auto-approve
-cd .. #return
 
+Destroy the infrastructure created with the no-code workflow in HCP in case you deployed something.
+
+In case you also created some infrastructure with the CLI workflow:
+```bash
 cd modules-demo
 terraform destroy -auto-approve
 cd .. #return
 ```
-
-If you also created the no-code module:
+Destroy all configurations created for HCP Terraform:
 ```bash
-cd no-code-module-demo
+# Destroy infra from modules-demo
+cd config-hcp-terraform
 terraform destroy -auto-approve
 cd .. #return
 ```

@@ -21,6 +21,10 @@ resource "vault_mount" "kvv2" {
   description = "KV Version 2 secret engine mount"
 }
 
+locals {
+  formatted_date = formatdate("DD MMM YYYY hh:mm ZZZ", timestamp())
+}
+
 resource "vault_kv_secret_v2" "example" {
   mount                      = vault_mount.kvv2.path
   name                       = "example-secret"
@@ -29,7 +33,7 @@ resource "vault_kv_secret_v2" "example" {
   data_json                  = jsonencode(
     {
         username       = "HashiCorp",
-        password       = "Example secret. For example a DB password"
+        password       = "Example secret. For example a DB password. Created on ${local.formatted_date}"
     }
   )
 }

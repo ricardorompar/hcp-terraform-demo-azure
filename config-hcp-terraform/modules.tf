@@ -42,11 +42,17 @@ resource "tfe_registry_module" "hashicat-complete" {
 resource "tfe_no_code_module" "hashicat-complete" {
   organization      = var.org-name
   registry_module   = tfe_registry_module.hashicat-complete.id
-  version_pin       = "0.1.6"
+  version_pin       = "0.1.8"
 
   variable_options {
-        name    = "placeholder"
-        type    = "string"
-        options = [ "loremflickr.com", "placebear.com", "placedog.net"]
-    }
+    name    = "placeholder"
+    type    = "string"
+    options = [ "loremflickr.com", "placebear.com", "placedog.net"]
+  }
+
+  variable_options {
+    name    = "vm_size"
+    type    = "string"
+    options = [ "Standard_B1s", "Standard_A1_v2", "Standard_D2", "Standard_F1s", "Standard_F64ams_v6", "Standard_FX48mds", "Standard_M128ms_v2", "Standard_M896ixds_32_v3" ]
+  }
 }

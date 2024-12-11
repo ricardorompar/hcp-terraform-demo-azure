@@ -42,7 +42,7 @@ resource "tfe_registry_module" "hashicat-complete" {
 resource "tfe_no_code_module" "hashicat-complete" {
   organization      = var.org-name
   registry_module   = tfe_registry_module.hashicat-complete.id
-  version_pin       = "0.1.8"
+  version_pin       = "0.1.9"
 
   variable_options {
     name    = "placeholder"

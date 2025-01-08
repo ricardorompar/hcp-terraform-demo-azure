@@ -1,7 +1,7 @@
 resource "tfe_policy_set" "demo" {
   name                = "adnoc-policy-set"
   description         = "A set of example policies for restricting VM size and costs."
-  organization        = "r2-org"
+  organization        = var.org-name
   kind                = "sentinel"
   agent_enabled       = "false"
 
